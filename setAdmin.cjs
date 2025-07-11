@@ -7,7 +7,7 @@
 // });
 
 // const uid = 'f4LDhgwfLGblAU98AkROdCuTY783';
-
+console.log("setAdmin script skipped during deployment.");
 // admin
 //   .auth()
 //   .setCustomUserClaims(uid, { admin: true })
