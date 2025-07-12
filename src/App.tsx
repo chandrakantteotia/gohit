@@ -33,7 +33,7 @@ function App() {
     <ThemeProvider>
       <AuthProvider>
         <Router>
-          <div className="min-h-screen bg-gray-50 dark:bg-slate-900 transition-colors duration-300">
+          <div className="min-h-screen bg-gray-50 transition-colors duration-300">
             <Navbar />
             <main>
               <Routes>
