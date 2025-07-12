@@ -40,7 +40,7 @@ interface Contact {
 }
 
 const AdminDashboard: React.FC = () => {
-  const { isAdmin, currentUser } = useAuth();
+  const { currentUser } = useAuth();
   const [properties, setProperties] = useState<Property[]>([]);
   const [contacts, setContacts] = useState<Contact[]>([]);
 
@@ -60,8 +60,8 @@ const [editingPoster, setEditingPoster] = useState<Property | undefined>();
   const [selectedContact, setSelectedContact] = useState<Contact | null>(null);
 
   useEffect(() => {
-    if (isAdmin) fetchData();
-  }, [isAdmin]);
+    if (currentUser) fetchData();
+  }, [currentUser]);
 
   const fetchData = async () => {
     try {
@@ -246,16 +246,16 @@ const handleAddPoster = () => {
     setShowPropertyForm(false);
   };
 
-  if (!isAdmin) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
-        <div className="text-center">
-          <h2 className="text-2xl font-bold">Access Denied</h2>
-          <p className="text-gray-600">You don’t have permission to access this page.</p>
-        </div>
-      </div>
-    );
-  }
+  // if (!isAdmin) {
+  //   return (
+  //     <div className="min-h-screen flex items-center justify-center bg-gray-50">
+  //       <div className="text-center">
+  //         <h2 className="text-2xl font-bold">Access Denied</h2>
+  //         <p className="text-gray-600">You don’t have permission to access this page.</p>
+  //       </div>
+  //     </div>
+  //   );
+  // }
 
   if (loading) {
     return (

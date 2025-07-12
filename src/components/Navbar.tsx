@@ -54,7 +54,7 @@ const Navbar: React.FC = () => {
                 {item.name}
               </Link>
             ))}
-            {isAdmin && (
+            {currentUser && (
               <Link
                 to="/admin"
                 className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-4 py-2 rounded-lg text-sm font-medium hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center space-x-1 shadow-md hover:shadow-lg transform hover:scale-105"
@@ -101,7 +101,7 @@ const Navbar: React.FC = () => {
                 {item.name}
               </Link>
             ))}
-            {isAdmin && (
+            {currentUser && (
               <Link
                 to="/admin"
                 className="block px-3 py-2 text-base font-medium bg-gradient-to-r from-blue-600 to-blue-700 text-white rounded-lg mx-3 mt-2 hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-center shadow-md"
@@ -110,6 +110,7 @@ const Navbar: React.FC = () => {
                 Admin Panel
               </Link>
             )}
+            
             {currentUser && (
               <button
                 onClick={handleLogout}
