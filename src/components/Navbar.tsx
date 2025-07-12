@@ -7,7 +7,7 @@ import Img from '../assets/headerLogo.png';
 const Navbar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const location = useLocation();
-  const { currentUser, isAdmin, logout } = useAuth();
+  const { currentUser, logout } = useAuth();
 
   const navigation = [
     { name: 'Home', href: '/' },
@@ -29,7 +29,7 @@ const Navbar: React.FC = () => {
   };
 
   return (
-    <nav className="bg-white dark:bg-slate-800 shadow-lg sticky top-0 z-50 transition-colors duration-300 backdrop-blur-md bg-white/95 dark:bg-slate-800/95">
+    <nav className="bg-white shadow-lg sticky top-0 z-50 transition-colors duration-300 backdrop-blur-md bg-white/95">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between h-16">
           {/* Logo */}
@@ -45,9 +45,9 @@ const Navbar: React.FC = () => {
               <Link
                 key={item.name}
                 to={item.href}
-                className={`text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 px-3 py-2 text-sm font-medium transition-all duration-300 ${
+                className={`text-gray-700 hover:text-blue-600 px-3 py-2 text-sm font-medium transition-all duration-300 ${
                   location.pathname === item.href
-                    ? 'text-blue-600 dark:text-blue-400 border-b-2 border-blue-600 dark:border-blue-400'
+                    ? 'text-blue-600 border-b-2 border-blue-600'
                     : ''
                 }`}
               >
@@ -65,7 +65,7 @@ const Navbar: React.FC = () => {
             {currentUser && (
               <button
                 onClick={handleLogout}
-                className="flex items-center space-x-1 text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 px-3 py-2 text-sm font-medium transition-all duration-300"
+                className="flex items-center space-x-1 text-gray-700 hover:text-red-600 px-3 py-2 text-sm font-medium transition-all duration-300"
               >
                 <LogOut className="h-4 w-4" />
                 <span>Logout</span>
@@ -77,7 +77,7 @@ const Navbar: React.FC = () => {
           <div className="md:hidden flex items-center">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 focus:outline-none ml-2"
+              className="text-gray-700 hover:text-blue-600 focus:outline-none ml-2"
             >
               {isOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
             </button>
@@ -86,14 +86,14 @@ const Navbar: React.FC = () => {
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden py-4 border-t border-gray-200 dark:border-gray-700 bg-white dark:bg-slate-800">
+          <div className="md:hidden py-4 border-t border-gray-200 bg-white">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 to={item.href}
-                className={`block px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-all duration-300 ${
+                className={`block px-3 py-2 text-base font-medium text-gray-700 hover:text-blue-600 transition-all duration-300 ${
                   location.pathname === item.href
-                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
+                    ? 'text-blue-600 bg-blue-50'
                     : ''
                 }`}
                 onClick={() => setIsOpen(false)}
@@ -110,11 +110,11 @@ const Navbar: React.FC = () => {
                 Admin Panel
               </Link>
             )}
-            
+
             {currentUser && (
               <button
                 onClick={handleLogout}
-                className="flex items-center space-x-1 px-3 py-2 text-base font-medium text-gray-700 dark:text-gray-300 hover:text-red-600 dark:hover:text-red-400 transition-all duration-300"
+                className="flex items-center space-x-1 px-3 py-2 text-base font-medium text-gray-700 hover:text-red-600 transition-all duration-300"
               >
                 <LogOut className="h-4 w-4" />
                 <span>Logout</span>

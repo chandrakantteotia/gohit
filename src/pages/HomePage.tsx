@@ -75,116 +75,88 @@ const HomePage: React.FC = () => {
 
   return (
     <div className="min-h-screen">
-      {/* ✅ Hero Section Integrated */}
+      {/* Hero Section */}
       <section className="relative h-screen w-full overflow-hidden">
-        {/* Background Slider */}
         <div className="absolute inset-0 z-0">
           <HeroSlider images={heroImages} autoSlide slideInterval={4000} />
           <div className="absolute inset-0 bg-black bg-opacity-40" />
         </div>
-
-        {/* Foreground Content */}
         <div className="relative z-10 h-full flex items-center justify-center text-white text-center px-4">
           <div>
             <h1 className="text-4xl md:text-6xl font-bold mb-6">
               Building Your{' '}
               <span className="text-yellow-400">
-                <AutoTyping 
-                  texts={typingTexts}
-                  speed={120}
-                  deleteSpeed={80}
-                  pauseTime={1500}
-                />
+                <AutoTyping texts={typingTexts} speed={120} deleteSpeed={80} pauseTime={1500} />
               </span>
             </h1>
             <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
               Professional civil engineering services for construction, design, and premium plots.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link
-                to="/properties"
-                className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition shadow-lg"
-              >
+              <Link to="/properties" className="bg-yellow-400 text-black px-6 py-3 rounded-lg font-semibold hover:bg-yellow-300 transition shadow-lg">
                 View Properties <ArrowRight className="inline ml-2" size={18} />
               </Link>
-              <Link
-                to="/contact"
-                className="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition shadow-lg"
-              >
+              <Link to="/contact" className="border border-white text-white px-6 py-3 rounded-lg font-semibold hover:bg-white hover:text-blue-600 transition shadow-lg">
                 Get Consultation
               </Link>
             </div>
           </div>
         </div>
       </section>
-      {/* Stats Section */}
-      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-800 dark:to-slate-900 transition-colors duration-300 overflow-hidden">
+
+      {/* Stats */}
+      <section className="py-20 bg-gradient-to-br from-gray-50 to-gray-100 transition-colors duration-300 overflow-hidden">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Our Achievements</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">Numbers that speak for our excellence and commitment to quality</p>
+            <h2 className="text-4xl font-bold text-gray-900 mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Our Achievements</h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">Numbers that speak for our excellence and commitment to quality</p>
             <div className="w-24 h-1 bg-gradient-to-r from-blue-600 to-purple-600 mx-auto mt-4 rounded-full"></div>
           </div>
-          
-          {/* Infinite Slider */}
+
           <div className="slider-container relative">
-            <InfiniteSlider 
-              stats={stats} 
-              speed={25}
-              className="py-8"
-            />
-            
-            {/* Gradient overlays for smooth edges */}
-            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 dark:from-slate-800 to-transparent pointer-events-none z-10"></div>
-            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 dark:from-slate-800 to-transparent pointer-events-none z-10"></div>
+            <InfiniteSlider stats={stats} speed={25} className="py-8" />
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-50 to-transparent pointer-events-none z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-50 to-transparent pointer-events-none z-10"></div>
           </div>
-          
-          {/* Additional info */}
+
           <div className="text-center mt-12">
-            <p className="text-gray-600 dark:text-gray-400 text-lg">
-              <span className="font-semibold text-blue-600 dark:text-blue-400">15+ Years</span> of Excellence in Construction & Real Estate
+            <p className="text-gray-600 text-lg">
+              <span className="font-semibold text-blue-600">15+ Years</span> of Excellence in Construction & Real Estate
             </p>
           </div>
         </div>
       </section>
 
       {/* Featured Properties */}
-      <section className="py-20 bg-white dark:bg-slate-900 transition-colors duration-300">
+      <section className="py-20 bg-white transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Featured Properties</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">Discover our premium plots and houses</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured Properties</h2>
+            <p className="text-xl text-gray-600">Discover our premium plots and houses</p>
           </div>
 
           {loading ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[1, 2, 3].map((i) => (
-                <div key={i} className="bg-gray-200 dark:bg-gray-700 animate-pulse rounded-xl h-64"></div>
+                <div key={i} className="bg-gray-200 animate-pulse rounded-xl h-64"></div>
               ))}
             </div>
           ) : (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {featuredPlots.map((plot) => (
-                <div key={plot.id} className="bg-white dark:bg-slate-800 rounded-xl shadow-lg overflow-hidden hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700">
-                  <img
-                    src={plot.images[0] || 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=400'}
-                    alt={plot.title}
-                    className="w-full h-56 object-cover"
-                  />
+                <div key={plot.id} className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100">
+                  <img src={plot.images[0] || 'https://images.pexels.com/photos/186077/pexels-photo-186077.jpeg?auto=compress&cs=tinysrgb&w=400'} alt={plot.title} className="w-full h-56 object-cover" />
                   <div className="p-6">
-                    <h3 className="text-xl font-bold mb-2 text-gray-900 dark:text-white">{plot.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-3 flex items-center">
+                    <h3 className="text-xl font-bold mb-2 text-gray-900">{plot.title}</h3>
+                    <p className="text-gray-600 mb-3 flex items-center">
                       <span className="w-2 h-2 bg-blue-600 rounded-full mr-2"></span>
                       {plot.location}
                     </p>
                     <div className="flex justify-between items-center mb-4">
                       <span className="text-2xl font-bold text-blue-600">₹{plot.price}</span>
-                      <span className="text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-3 py-1 rounded-full text-sm">{plot.area}</span>
+                      <span className="text-gray-500 bg-gray-100 px-3 py-1 rounded-full text-sm">{plot.area}</span>
                     </div>
-                    <Link
-                      to={`/properties/${plot.id}`}
-                      className="w-full bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-600 dark:hover:to-blue-700 transition-all duration-300 text-center block font-semibold shadow-md hover:shadow-lg transform hover:scale-105"
-                    >
+                    <Link to={`/properties/${plot.id}`} className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 px-4 rounded-lg hover:from-blue-700 hover:to-blue-800 transition-all duration-300 text-center block font-semibold shadow-md hover:shadow-lg transform hover:scale-105">
                       View Details
                     </Link>
                   </div>
@@ -194,10 +166,7 @@ const HomePage: React.FC = () => {
           )}
 
           <div className="text-center mt-12">
-            <Link
-              to="/properties"
-              className="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-600 dark:hover:to-blue-700 transition-all duration-300 inline-flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
+            <Link to="/properties" className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 inline-flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105">
               <span>View All Properties</span>
               <ArrowRight className="h-5 w-5" />
             </Link>
@@ -206,44 +175,31 @@ const HomePage: React.FC = () => {
       </section>
 
       {/* Services Overview */}
-      <section className="py-20 bg-gray-50 dark:bg-slate-800 transition-colors duration-300">
+      <section className="py-20 bg-gray-50 transition-colors duration-300">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
-            <p className="text-xl text-gray-600 dark:text-gray-300">Complete construction and real estate solutions</p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">Our Services</h2>
+            <p className="text-xl text-gray-600">Complete construction and real estate solutions</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg text-center hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group">
-              <div className="bg-gradient-to-br from-blue-100 to-blue-200 dark:from-blue-900 dark:to-blue-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Building2 className="h-8 w-8 text-blue-600" />
+            {[
+              { icon: <Building2 className="h-8 w-8 text-blue-600" />, title: 'House Construction', desc: 'Complete home construction services from foundation to finishing with modern techniques' },
+              { icon: <Users className="h-8 w-8 text-green-600" />, title: 'Plot Development', desc: 'Premium plot development with all necessary approvals and modern amenities' },
+              { icon: <Award className="h-8 w-8 text-orange-600" />, title: 'Expert Consultation', desc: 'Professional consultation for all your construction and real estate requirements' }
+            ].map((service, i) => (
+              <div key={i} className="bg-white p-8 rounded-xl shadow-lg text-center hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 group">
+                <div className="bg-gradient-to-br from-blue-100 to-blue-200 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+                  {service.icon}
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-gray-900">{service.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{service.desc}</p>
               </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">House Construction</h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Complete home construction services from foundation to finishing with modern techniques</p>
-            </div>
-
-            <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg text-center hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group">
-              <div className="bg-gradient-to-br from-green-100 to-green-200 dark:from-green-900 dark:to-green-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Users className="h-8 w-8 text-green-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Plot Development</h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Premium plot development with all necessary approvals and modern amenities</p>
-            </div>
-
-            <div className="bg-white dark:bg-slate-800 p-8 rounded-xl shadow-lg text-center hover:shadow-xl dark:hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100 dark:border-gray-700 group">
-              <div className="bg-gradient-to-br from-orange-100 to-orange-200 dark:from-orange-900 dark:to-orange-800 w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-                <Award className="h-8 w-8 text-orange-600" />
-              </div>
-              <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">Expert Consultation</h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">Professional consultation for all your construction and real estate requirements</p>
-            </div>
+            ))}
           </div>
 
           <div className="text-center mt-12">
-            <Link
-              to="/services"
-              className="bg-gradient-to-r from-blue-600 to-blue-700 dark:from-blue-500 dark:to-blue-600 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-blue-800 dark:hover:from-blue-600 dark:hover:to-blue-700 transition-all duration-300 inline-flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105"
-            >
+            <Link to="/services" className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-lg text-lg font-semibold hover:from-blue-700 hover:to-blue-800 transition-all duration-300 inline-flex items-center space-x-2 shadow-lg hover:shadow-xl transform hover:scale-105">
               <span>View All Services</span>
               <ArrowRight className="h-5 w-5" />
             </Link>
