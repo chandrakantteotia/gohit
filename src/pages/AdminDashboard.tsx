@@ -38,6 +38,7 @@ interface Contact {
   message: string;
   timestamp: any;
 }
+import PosterForm from '../components/admin/PosterForm';
 
 const AdminDashboard: React.FC = () => {
   const { currentUser } = useAuth();
@@ -45,7 +46,10 @@ const AdminDashboard: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([]);
 
   const [showPosterForm, setShowPosterForm] = useState(false);
-const [editingPoster, setEditingPoster] = useState<Property | undefined>();
+  const [editingPoster, setEditingPoster] = useState<Property | undefined>();
+
+  //   const [showPosterForm, setShowPosterForm] = useState(false);
+  // const [editingPoster, setEditingPoster] = useState<Property | undefined>();
 
 
   const [footerInfo, setFooterInfo] = useState({ ownerName: '', engineerName: '' });
@@ -114,16 +118,16 @@ const [editingPoster, setEditingPoster] = useState<Property | undefined>();
       return null;
     }
   };
-  
-  const handleEditPoster = (poster: Property) => {
-  setEditingPoster(poster);
-  setShowPosterForm(true);
-};
 
-const handleAddPoster = () => {
-  setEditingPoster(undefined);
-  setShowPosterForm(true);
-};
+  //   const handleEditPoster = (poster: Property) => {
+  //   setEditingPoster(poster);
+  //   setShowPosterForm(true);
+  // };
+
+  // const handleAddPoster = () => {
+  //   setEditingPoster(undefined);
+  //   setShowPosterForm(true);
+  // };
 
   const handleFooterSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -257,6 +261,7 @@ const handleAddPoster = () => {
   //   );
   // }
 
+
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50">
@@ -286,16 +291,18 @@ const handleAddPoster = () => {
           <StatCard icon={<TrendingUp />} title="Sold" value={sold} color="red" />
           <StatCard icon={<Mail />} title="Messages" value={contacts.length} color="purple" />
           <StatCard icon={<Users />} title="Total Subscribers" value={subscribers.length} color="purple" />
-
-
-          
-           <button
-                onClick={handleAddProperty}
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center space-x-2"
-              >
-                <Plus className="h-4 w-4" />
-                <span>Add Poster</span>
-              </button>
+        </div>
+        <div className="flex justify-end mb-4">
+          <button
+            onClick={() => {
+              setEditingPoster(undefined); // create mode
+              setShowPosterForm(true);     // show form
+            }}
+            className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 flex items-center space-x-2"
+          >
+            <Plus className="h-4 w-4" />
+            <span>Add Poster</span>
+          </button>
         </div>
 
 
@@ -391,8 +398,8 @@ const handleAddPoster = () => {
                       <td className="px-6 py-4 text-sm">{property.price}</td>
                       <td className="px-6 py-4">
                         <span className={`text-xs px-2 py-1 rounded-full font-semibold ${property.status === 'available' ? 'bg-green-100 text-green-800' :
-                            property.status === 'sold' ? 'bg-red-100 text-red-800' :
-                              'bg-yellow-100 text-yellow-800'
+                          property.status === 'sold' ? 'bg-red-100 text-red-800' :
+                            'bg-yellow-100 text-yellow-800'
                           }`}>{property.status}</span>
                       </td>
                       <td className="px-6 py-4 space-x-2">
@@ -733,6 +740,14 @@ const handleAddPoster = () => {
         {showPropertyForm && (
           <PropertyForm property={editingProperty} onClose={() => setShowPropertyForm(false)} onSuccess={handleFormSuccess} />
         )}
+        {showPosterForm && (
+          <PosterForm
+            poster={editingPoster} // undefined when adding new
+            onClose={() => setShowPosterForm(false)}
+            onSuccess={fetchData} // Refresh after success
+          />
+        )}
+
       </div>
     </div>
   );
@@ -760,8 +775,8 @@ const OverviewList = ({ title, items, type }: any) => (
           </div>
           {type === 'property' && (
             <span className={`text-xs px-2 py-1 rounded-full font-semibold ${item.status === 'available' ? 'bg-green-100 text-green-800' :
-                item.status === 'sold' ? 'bg-red-100 text-red-800' :
-                  'bg-yellow-100 text-yellow-800'
+              item.status === 'sold' ? 'bg-red-100 text-red-800' :
+                'bg-yellow-100 text-yellow-800'
               }`}>{item.status}</span>
           )}
         </div>

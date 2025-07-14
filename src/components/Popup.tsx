@@ -23,11 +23,12 @@ const Popup: React.FC = () => {
   useEffect(() => {
     const fetchImages = async () => {
       try {
-        const querySnapshot = await getDocs(collection(db, 'uploadedImages'));
+        const querySnapshot = await getDocs(collection(db, 'posters'));
         const urls: string[] = [];
         querySnapshot.forEach((doc) => {
           const data = doc.data();
-          if (data?.url) urls.push(data.url);
+          if (data?.image) urls.push(data.image);
+
         });
         setImages(urls.reverse()); // latest image first
       } catch (error) {
